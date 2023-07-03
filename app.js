@@ -36,7 +36,39 @@ function showImagePreview(imageDataUrl) {
 
 // Convert the captured image to an avatar
 function convertToAvatar() {
-  // Add your image processing and conversion logic here
+  // Get the captured image data
+  const capturedImage = document.querySelector('#image-preview img');
+
+  // Create a canvas element
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+
+  // Set the canvas dimensions to match the image
+  canvas.width = capturedImage.width;
+  canvas.height = capturedImage.height;
+
+  // Draw the image on the canvas
+  context.drawImage(capturedImage, 0, 0);
+
+  // Apply image processing and conversion
+  // Example: Convert the image to grayscale
+  const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+  const pixels = imageData.data;
+
+  for (let i = 0; i < pixels.length; i += 4) {
+    const average = (pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3;
+    pixels[i] = average; // Red channel
+    pixels[i + 1] = average; // Green channel
+    pixels[i + 2] = average; // Blue channel
+  }
+
+  context.putImageData(imageData, 0, 0);
+
+  // Display the converted image
+  const convertedImage = document.createElement('img');
+  convertedImage.src = canvas.toDataURL('image/png');
+  imagePreview.innerHTML = '';
+  imagePreview.appendChild(convertedImage);
 }
 
 // Event listeners
