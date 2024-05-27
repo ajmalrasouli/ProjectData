@@ -98,9 +98,3 @@ Contributions are welcome! Feel free to open a new issue or submit a pull reques
 
 *** License ***
 This project is licensed under the *MIT License*.
-
-```vbnet
-Feel free to customize the content of the README.md file to match your project's specific details and requirements.
-
-Note: Make sure to include the necessary sections, such as Features, Technologies Used, Getting Started guide, Usage instructions, Deployment guide, Contributing information, and License details.
-```
